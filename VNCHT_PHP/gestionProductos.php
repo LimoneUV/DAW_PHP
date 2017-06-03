@@ -49,6 +49,9 @@ and open the template in the editor.
                     <th aling="center">
                         Modificado/Agregado?
                     </th>
+                    <th aling="center">
+                        Eliminar?
+                    </th>
                 </tr>
             <?php
             $i = 0;
@@ -68,6 +71,7 @@ and open the template in the editor.
                 <td aling="center"><input type="text" name="exi_<?php echo $i?>" value="<?php echo $existencias ?>"/></td>
                 <td aling="center"><input type="text" name="pre_<?php echo $i?>" value="<?php echo $precio ?>"/></td>
                 <td aling="center"><input type="checkbox" name="added_<?php echo $i?>" value="modRow=<?php echo $i?>"></td>
+                <td aling="center"><input type="checkbox" name="delet_<?php echo $i?>" value="delRow=<?php echo $i?>"></td>
             </tr>
                 <?php
                 $i = $i + 1;
