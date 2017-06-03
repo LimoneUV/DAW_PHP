@@ -115,5 +115,67 @@
             }
             }
         ?>
+        <form method="post" action="gestionUsuarios.php">
+            <table>
+                <tr>
+                    <td>Mostrar lista de usuarios: </td>
+                    <td><input type="submit" value="Mostrar" name="mostrar"/></td>
+                </tr>
+            </table>
+        </form>
+        <?php
+            if(isset($_POST['mostrar'])){
+            ($resultado=mysqli_query($recurso,
+                                    "SELECT nick,password,nombre,apellidos,email,direccion,fecha_nac,tipo,estado"
+                    . "              FROM user"));
+                
+            while($fila=mysqli_fetch_row($resultado)){  
+                $nick=$fila[0];
+                $password=$fila[1];
+                $nombre=$fila[2];
+                $apellidos=$fila[3];
+                $email=$fila[4];
+                $direccion=$fila[5];
+                $fecha_nac=$fila[6];
+                $tipo=$fila[7];
+                $estado=$fila[8];
+        ?>
+        <table>
+                <tr>
+                    <td><label>User:</label></td>
+                    <td><input type="text" name="nickf" value="<?PHP echo $nick ?>" readonly="readonly"/></td>
+                    <td><label>Password:</label></td>
+                    <td><input type="text" name="password" value="<?PHP echo $password ?>" readonly="readonly"/></td>
+                </tr>
+                <tr>
+                    <td><label>Nombre:</label></td>
+                    <td><input type="text" name="nombre" value="<?PHP echo $nombre ?>" readonly="readonly"/></td>
+                    <td><label>Apellidos:</label></td>
+                    <td><input type="text" name="apellidos" value="<?PHP echo $apellidos ?>" readonly="readonly"/></td>
+                </tr>
+                <tr>
+                    <td><label>Email:</label></td>
+                    <td><input type="text" name="email" value="<?PHP echo $email ?>" readonly="readonly"/></td>
+                </tr>
+                <tr>
+                    <td><label>Dirección:</label></td>
+                    <td><input type="text" name="direccion" value="<?PHP echo $direccion ?>" readonly="readonly"/></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha nacimiento:</label></td>
+                    <td><input type="text" name="fecha_nac" value="<?PHP echo $fecha_nac ?>" readonly="readonly"/></td>
+                </tr>
+                <tr>
+                    <td><label>Tipo:</label></td>
+                    <td><input type="text" name="tipo" value="<?PHP echo $tipo ?>" readonly="readonly"/></td>
+                    <td><label>Estado:</label></td>
+                    <td><input type="text" name="estado" value="<?PHP echo $estado ?>" readonly="readonly"/></td>
+                </tr>
+                <tr><br/></tr>
+        </table>
+        <?php
+            }
+            }
+        ?>
     </body>
 </html>
