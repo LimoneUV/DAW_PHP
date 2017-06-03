@@ -26,7 +26,7 @@
             ($resultado=mysqli_query($recurso,
                                     "SELECT password,nombre,apellidos,email,direccion,fecha_nac,tipo,estado"
                     . "              FROM user WHERE nick LIKE '$nick'"));
-            while($fila=mysqli_fecth_row($resultado)){
+            while($fila=mysqli_fetch_row($resultado)){
                 $password=$fila[0];
                 $nombre=$fila[1];
                 $apellidos=$fila[2];
