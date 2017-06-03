@@ -108,7 +108,7 @@
             }
             if(isset($_POST['eliminar'])){
                 ($resultado=mysqli_query($recurso,
-                                    "UPDATE FROM user"
+                                    "DELETE FROM user"
                         . "         WHERE nick LIKE '$nickf'"));
                 printf("El usuario se ha eliminado\n");
             }
