@@ -1,11 +1,3 @@
-<?php?>
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -26,7 +18,7 @@
         <?php
             $recurso=mysqli_connect("localhost","root","","tiendaonline");
             if(mysqli_connect_error()){
-                printf("Error conectando a la BD tiendaonline: %s",mysqli_connect_error());
+                printf("Error conectando a la BD tiendaonline: %s\n",mysqli_connect_error());
                 exit();
 }
             if(isset($_POST['buscar'])){
@@ -34,7 +26,6 @@
             ($resultado=mysqli_query($recurso,
                                     "SELECT password,nombre,apellidos,email,direccion,fecha_nac,tipo,estado"
                     . "              FROM user WHERE nick LIKE '$nick'"));
-            
             while($fila=mysqli_fecth_row($resultado)){
                 $password=$fila[0];
                 $nombre=$fila[1];
@@ -44,7 +35,6 @@
                 $fecha_nac=$fila[5];
                 $tipo=$fila[6];
                 $estado=$fila[7];
-            }
             }
         ?>
         <form method="post" action="gestionUsuarios.php">
@@ -105,6 +95,7 @@
                 ($resultado=mysqli_query($recurso,
                                     "UPDATE FROM user"
                         . "         WHERE nick LIKE '$nickf'"));
+            }
             }
         ?>
     </body>
