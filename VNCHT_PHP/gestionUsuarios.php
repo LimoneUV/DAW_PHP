@@ -21,12 +21,13 @@
                 printf("Error conectando a la BD tiendaonline: %s\n",mysqli_connect_error());
                 exit();
 }
-            if(isset($_POST['buscar'])){
+            if(isset($_POST['buscar']) || isset($_POST['eliminar']) || isset($_POST['modificar'])){
+                if(!isset($_POST['eliminar']) && !isset($_POST['modificar'])){
             $nick=$_POST['nick'];
             ($resultado=mysqli_query($recurso,
                                     "SELECT password,nombre,apellidos,email,direccion,fecha_nac,tipo,estado"
                     . "              FROM user WHERE nick LIKE '$nick'"));
-            
+                
             $fila=mysqli_fetch_row($resultado);
                 $password=$fila[0];
                 $nombre=$fila[1];
@@ -36,6 +37,18 @@
                 $fecha_nac=$fila[5];
                 $tipo=$fila[6];
                 $estado=$fila[7];
+                }
+                else{
+                    $nick=null;
+                    $password=null;
+                    $nombre=null;
+                    $apellidos=null;
+                    $email=null;
+                    $direccion=null;
+                    $fecha_nac=null;
+                    $tipo=null;
+                    $estado=null;
+                }
         ?>
         <form method="post" action="gestionUsuarios.php">
             <table>
@@ -76,7 +89,7 @@
             </table>
         </form>
         <?PHP
-        if(!isset($_POST['buscar'])){
+        if(!isset($_POST['buscar']) || isset($_POST['eliminar']) || isset($_POST['modificar'])){
             $nickf=$_POST['nickf'];
             $passwordf=$_POST['password'];
             $nombref=$_POST['nombre'];
@@ -91,11 +104,13 @@
                                     "UPDATE user"
                         . "         SET nombre='$nombref',apellidos='$apellidosf',password='$passwordf',email='$emailf',direccion='$direccionf',fecha_nac='$fecha_nacf',tipo='$tipof',estado='$estadof'"
                         . "         WHERE nick LIKE '$nickf'"));
+                printf("El usuario se ha modificado\n");
             }
             if(isset($_POST['eliminar'])){
                 ($resultado=mysqli_query($recurso,
                                     "UPDATE FROM user"
                         . "         WHERE nick LIKE '$nickf'"));
+                printf("El usuario se ha eliminado\n");
             }
             }
             }
