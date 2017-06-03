@@ -26,7 +26,8 @@
             ($resultado=mysqli_query($recurso,
                                     "SELECT password,nombre,apellidos,email,direccion,fecha_nac,tipo,estado"
                     . "              FROM user WHERE nick LIKE '$nick'"));
-            while($fila=mysqli_fetch_row($resultado)){
+            
+            $fila=mysqli_fetch_row($resultado);
                 $password=$fila[0];
                 $nombre=$fila[1];
                 $apellidos=$fila[2];
@@ -35,7 +36,6 @@
                 $fecha_nac=$fila[5];
                 $tipo=$fila[6];
                 $estado=$fila[7];
-            }
         ?>
         <form method="post" action="gestionUsuarios.php">
             <table>
@@ -76,6 +76,7 @@
             </table>
         </form>
         <?PHP
+        if(!isset($_POST['buscar'])){
             $nickf=$_POST['nickf'];
             $passwordf=$_POST['password'];
             $nombref=$_POST['nombre'];
@@ -95,6 +96,7 @@
                 ($resultado=mysqli_query($recurso,
                                     "UPDATE FROM user"
                         . "         WHERE nick LIKE '$nickf'"));
+            }
             }
             }
         ?>
