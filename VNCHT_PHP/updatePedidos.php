@@ -13,6 +13,10 @@ and open the template in the editor.
         <?php
             session_start();
             $recurso = mysqli_connect("localhost", "root", "", "tiendaonline");
+            if (mysqli_connect_error()) {
+                printf("Error conectando a la base de datos: %s\n",mysqli_connect_error());
+                exit();
+            }
             $i = 0;
             $variable = 'modded_' .$i;
             $id = 'id_'.$i;
@@ -23,8 +27,8 @@ and open the template in the editor.
                 if ($modded === (string) $_POST[$variable]) {
                     $index = $_POST[$id];
                     $state = $_POST[$estado];
-                    echo "UPDATE productos SET estado = '$state' WHERE id_pedido='$index'";
-                    mysqli_query($recurso, "UPDATE productos SET estado = '$state' WHERE id_pedido='$index'");
+                    mysqli_query($recurso, "UPDATE pedidos SET estado = '$state' WHERE id_pedido=$index");
+                    mysqli_commit($recurso)
                     ?>
                     <h1>La operación para actualizar el estado del pedido con referencia <?php echo $index?> se ha completado</h1>
                     <?php

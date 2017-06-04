@@ -65,7 +65,7 @@ and open the template in the editor.
                             $estado = 0;
                         }
                         ?>
-                        <td aling="center"><?php echo $id ?><input type="hidden" name="id_<?php echo $i?>"/></td>
+                        <td aling="center"><?php echo $id ?><input type="hidden" name="id_<?php echo $i?>" value="<?php echo $id ?>"/></td>
                         <td aling="center"><input type="text" name="fecha_<?php echo $i ?>" value="<?php echo $fecha ?>"/></td>
                         <td aling="center"><input type="text" name="preci_<?php echo $i ?>" value="<?php echo $precio ?>"/></td>
                         <td aling="center"><input type="text" name="clien_<?php echo $i ?>" value="<?php echo $cliente ?>"/></td>
