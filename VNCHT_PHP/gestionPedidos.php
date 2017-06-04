@@ -24,9 +24,27 @@ and open the template in the editor.
             printf("Error conectando a la base de datos: %s\n", mysqli_connect_error());
             exit();
         }
-
-        $resultado = mysqli_query($recurso, "SELECT id_pedido, fecha_pedido, precio_pedido, nick, estado FROM pedidos");
-        $_SESSION["resultado"] = $resultado;
+        ?>
+        <form form method="post" action="gestionPedidos.php">
+            <table>
+                <tr>
+                    <td><label>User: </label></td>
+                    <td><input type="text" name="nick"/></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Buscar" name="buscar"/></td>
+                </tr>
+            </table>
+        <?php
+        if(!isset($_POST['buscar'])){
+            $resultado = mysqli_query($recurso, "SELECT id_pedido, fecha_pedido, precio_pedido, nick, estado FROM pedidos");
+            $_SESSION["resultado"] = $resultado;
+        }
+        if(isset($_POST['buscar'])){
+            $nick=$_POST['nick'];
+            $resultado = mysqli_query($recurso, "SELECT id_pedido, fecha_pedido, precio_pedido, nick, estado FROM pedidos WHERE nick LIKE '$nick'");
+            $_SESSION["resultado"] = $resultado;
+        }
         ?>
         <form method="post" action="./updatePedidos.php">
             <table>
