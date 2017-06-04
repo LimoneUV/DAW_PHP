@@ -32,7 +32,7 @@ and open the template in the editor.
                     <td><input type="text" name="nick"/></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" value="Buscar" name="buscar"/></td>
+                    <td colspan="2" align="center"><input type="submit" value="Buscar" name="buscar"/></td>
                 </tr>
             </table>
         <?php
